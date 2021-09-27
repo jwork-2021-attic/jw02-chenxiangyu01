@@ -1,0 +1,89 @@
+@startuml
+
+enum Gourd{
+    +A1_256(r,b,g);
+
+    -final int r;
+    -final int g;
+    -final int b;
+    - Position position
+
+    Gourd(int r,int g, int b)
+
+    +{static} Gourd getGourdByRank(int rank)
+    +int rank()
+    +void swapPosition(Gourd another)
+}
+interface Sorter{
+    +void load(int[] elements)
+    +void sort()
+    +String getPlan()
+}
+class ASorter{
+    -int[] a
+    -String plan
+    -void swap(int i,int j)
+    +int getParentIndex(int child)
+    +int getLeftChildIndex(int parent)
+    +void adjustHeap(int i, int len)
+    +void asort()
+}
+class QSorter{
+    -int[] a
+    -String plan
+    -void swap(int i,int j)
+    +int part(int i,int j)
+    +void qsort(int i,int j)
+}
+interface Linable{
+    +void setPosition(Position position)
+    +Position getPosition()
+    +int getValue()
+}
+
+class Line{
+    -Position[] positions
+
+    +Line(int length)
+
+    +void put(Linable linable,int i)
+
+    +Linable get(int i)
+    
+    +Linable[] toArray()
+}
+
+class matrix{
+    +matrix(int l)
+}
+
+class Position{
+    -Linable Linable
+    Position(Linable linable)
+    +void setLinable(Linable linable)
+}
+
+
+
+class Geezer{
+    -{static} Geezer theGeezer
+    -Sorter sorter
+    +{static} Geezer getTheGeezer()
+    -Geezer()
+    +void setSorter(Sorter sorter)
+    +String lineup(Line line)
+    -String[] parsePlan(String plan)
+    -void execute(String step)
+}
+
+
+
+Sorter<|--ASorter
+Sorter<|--QSorter
+Sorter*--Geezer
+Linable<|--Gourd
+Position*--Gourd
+Position*--Line
+Line<|--matrix
+
+@enduml

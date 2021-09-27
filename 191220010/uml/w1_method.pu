@@ -1,0 +1,84 @@
+@startuml
+
+enum Gourd{
+    ONE(204, 0, 0),
+
+    TWO(255, 165, 0),
+
+    THREE(252, 233, 79),
+
+    FOUR(78, 154, 6),
+
+    FIVE(50, 175, 255),
+
+    SIX(114, 159, 207),
+
+    SEVEN(173, 127, 168);
+
+    -final int r;
+    -final int g;
+    -final int b;
+    - Position position
+
+    Gourd(int r,int g, int b)
+
+    +{static} Gourd getGourdByRank(int rank)
+    +int rank()
+    +void swapPosition(Gourd another)
+}
+interface Sorter{
+    +void load(int[] elements)
+    +void sort()
+    +String getPlan()
+}
+class BubbleSorter{
+    -int[] a
+    -String plan
+    -void swap(int i,int j)
+}
+interface Linable{
+    +void setPosition(Position position)
+    +Position getPosition()
+    +int getValue()
+}
+
+class Line{
+    -Position[] positions
+
+    +Line(int length)
+
+    +void put(Linable linable,int i)
+
+    +Linable get(int i)
+    
+    +Linable[] toArray()
+}
+
+class Position{
+    -Linable Linable
+    Position(Linable linable)
+    +void setLinable(Linable linable)
+}
+
+
+
+class Geezer{
+    -{static} Geezer theGeezer
+    -Sorter sorter
+    +{static} Geezer getTheGeezer()
+    -Geezer()
+    +void setSorter(Sorter sorter)
+    +String lineup(Line line)
+    -String[] parsePlan(String plan)
+    -void execute(String step)
+}
+
+
+
+Sorter<|--BubbleSorter
+Sorter*--Geezer
+Linable<|--Gourd
+Position*--Gourd
+Position*--Line
+
+@enduml

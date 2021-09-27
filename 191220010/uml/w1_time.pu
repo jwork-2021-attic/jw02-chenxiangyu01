@@ -1,0 +1,33 @@
+@startuml
+
+entity line as f1
+entity theGeezer as f2 #Black
+entity sorter as f3 #Purple
+entity writer as f4 #White
+entity line中的positions as f5 #Pink
+entity log as f6 #Yellow
+
+f1 -[#Black]>f1:创建实例
+
+f1-[#Red]>f5:调用put添加7个Gourd
+
+f2-[#Black]>f2:获取Geezer单例
+
+f3-[#Black]>f3:创建BubbleSorter实例
+
+f2-[#Red]>f2:调用setSorter（）
+
+f2-[#Red]>f6:调用lineUp，返回值存入log
+
+f4-[#Black]>f4:创建实例，将日志保存在result.txt
+
+f4-[#Red]>f4:调用write，flush，close
+
+@enduml
+
+
+
+
+
+
+
